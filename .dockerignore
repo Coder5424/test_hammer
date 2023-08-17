@@ -1,0 +1,12 @@
+.git
+.gitignore
+
+.docker
+
+testovoe_hammer/__pycache__/
+testovoe_hammer/*/__pycache__/
+testovoe_hammer/*/*/__pycache__/
+testovoe_hammer/*/*/*/__pycache__/
+.env/
+.venv/
+venv/
