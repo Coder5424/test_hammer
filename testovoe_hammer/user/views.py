@@ -4,7 +4,8 @@ from rest_framework import status
 from rest_framework import generics
 from .serializers import UserSerializer, UserDataSerializer, UserCodeSerializer
 from rest_framework.views import APIView
-import phonenumbers
+import random
+import string
 from core.models import User
 
 
@@ -65,6 +66,16 @@ class UserAuthView(APIView):
 
             if code == user.code:
                 user.code = None
+
+                if user.invite_code is None:
+                    invite_code = ''.join(
+                        random.choices(
+                            string.ascii_uppercase + string.digits,
+                            k=6
+                        )
+                    )
+                    user.invite_code = invite_code
+
                 user.save()
 
                 login(request, user)
